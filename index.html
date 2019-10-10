@@ -59,6 +59,7 @@
 
                 // TODO: Make the API call and handle the results
                 axios.get('https://api.openweathermap.org/data/2.5/forecast?id=4608408&APPID=25e989bd41e3e24ce13173d8126e0fd6&units=imperial', {
+                    // was running into an issue with CORS, so ended up having to explicitly create a proxy with the appropriate details to run
                         crossdomain: true,
                         proxy: {
                             host: '104.236.174.88',
@@ -66,6 +67,7 @@
                         }
                     })
                     .then(function (response) {
+                        // response comes back as a list, grabbed first item from that list
                         domStringBuilder(response.data.list[0]);
                     })
                     .catch((error) => {
